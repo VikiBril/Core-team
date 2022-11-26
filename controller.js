@@ -1,7 +1,7 @@
 const TaskManagerDAL = require('./taskManagerDAL');
 const {boardStatistics} = require('./boardStatistic');
 const {URL} = require('url');
-
+const logger = require('./Logger')
 const taskManagerDAL = new TaskManagerDAL();
 
 getId = (req, param) => {
@@ -32,12 +32,14 @@ module.exports = {
         }
         let dataAndStats = boardStatistics(boardId);
         dataAndStats.tasks = data;
+        // logger.log(req);
         res.writeHeader(200);
         res.end(JSON.stringify(dataAndStats));
         //this.props.match.params.id
     },
     showAllBoards: (req, res) => {
         const data = taskManagerDAL.getAllBoards();
+        // logger.log(req);
         res.writeHeader(200);
         res.end(JSON.stringify(data));
     },
@@ -52,6 +54,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 board = JSON.parse(body);
                 taskManagerDAL.updateBoard(board);
+                // logger.log(req);
                 res.end('done');
             })
     },
@@ -66,6 +69,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 board = JSON.parse(body);
                 taskManagerDAL.createNewBoard(board);
+                // logger.log(req);
                 res.end('done');
             })
     },
@@ -81,6 +85,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 task = JSON.parse(body);
                 taskManagerDAL.createNewTask(task,boardId);
+                // logger.log(req);
                 res.end('done');
             })
     },
@@ -95,6 +100,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 task = JSON.parse(body);
                 taskManagerDAL.updateTask(task);
+                // logger.log(req);
                 res.end('done');
             })
     },
@@ -108,6 +114,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 ids = JSON.parse(body);
                 taskManagerDAL.deleteTask(ids);
+                // logger.log(req);
                 res.end('done');
             })
         res.end('done');
@@ -123,6 +130,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 boardId = JSON.parse(body);
                 taskManagerDAL.deleteBoard(boardId);
+                // logger.log(req);
                 res.end('done');
             })
     },
@@ -136,7 +144,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 task = JSON.parse(body);
                 res.writeHeader(200);
-                logger.log(req);
+                // logger.log(req);
                 res.end(JSON.stringify(taskManagerDAL.filterTasks(task)));
             })
     }
