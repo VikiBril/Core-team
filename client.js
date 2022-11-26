@@ -30,13 +30,13 @@ fetch("http://localhost:3030/boards", requestOptions)
   .then(result => {
     // document.getElementById("main").innerHTML = result;
      var r = new Array(), j = -1;
-     for (var key=0, size=data.length; key<size; key++){
+     for (var key=0, size=result.length; key<size; key++){
          r[++j] ='<tr><td>';
-         r[++j] = data[key][0];
+         r[++j] = result[key][0];
          r[++j] = '</td><td class="whatever1">';
-         r[++j] = data[key][1];
+         r[++j] = result[key][1];
          r[++j] = '</td><td class="whatever2">';
-         r[++j] = data[key][2];
+         r[++j] = result[key][2];
          r[++j] = '</td></tr>';
      }
      $('#dataTable').html(r.join('')); 
