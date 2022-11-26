@@ -19,6 +19,9 @@ module.exports = {
     errorHandler: (req, res) => {
         error(res);
     },
+    renderHomePage: (req, res) => {
+        res.write(boards_client);
+    },
     getTasksByBoard: (req, res) => {
         const boardId =getId(req, 'boardId');
         const data = taskManagerDAL.getAllTaskByBoard(boardId);

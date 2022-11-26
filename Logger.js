@@ -16,12 +16,6 @@ module.exports = class Logger extends EventEmitter{
         // this.on('logToFile',this.logToFile);
         return this;
     }
-    newRequest (request){
-        const time = moment().format('YY-MM-DD hh:mm');
-        const msg = `${time} -> ${request.method}: ${request.url}`;
-        this.emit('logToFile',msg);
-        this.logger.log(msg);
-    }
 
     log(message = ''){
         const time = moment().format('DD-MM-YY hh:mm');
