@@ -126,7 +126,6 @@ module.exports = {
     filterBoardByParameters: (req, res) => {
         let body = [];
         let task;
-        const boardId = getId(req, 'boardId');
         req
             .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
@@ -134,7 +133,8 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 task = JSON.parse(body);
                 res.writeHeader(200);
-                res.end(JSON.stringify(taskManagerDAL.filterTasks(task,boardId)));
+                logger.log(req);
+                res.end(JSON.stringify(taskManagerDAL.filterTasks(task)));
             })
     }
 }
