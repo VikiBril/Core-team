@@ -9,16 +9,24 @@ getId = (req, param) => {
     return u;
 }
 
+error = (res) => {
+    res.writeHeader(404);
+    res.write('Bad request');
+    res.end();
+}
 
 module.exports = {
     errorHandler: (req, res) => {
-        res.writeHeader(404);
-        res.write('Bad request');
-        res.end();
+        error(res);
     },
     getTasksByBoard: (req, res) => {
         const boardId =getId(req, 'boardId');
         const data = taskManagerDAL.getAllTaskByBoard(boardId);
+        if (data == "error")
+        {
+            error(res);
+            return;
+        }
         let dataAndStats = boardStatistics(boardId);
         dataAndStats.tasks = data;
         res.writeHeader(200);
@@ -49,7 +57,7 @@ module.exports = {
         let board;
 
         req
-            //.on('error', logger.log(err))
+            .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
             .on('end', () => {
                 body = Buffer.concat(body).toString();
@@ -64,7 +72,7 @@ module.exports = {
         const boardId = getId(req, 'boardId');
 
         req
-            //.on('error', logger.log(err))
+            .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
             .on('end', () => {
                 body = Buffer.concat(body).toString();
@@ -78,7 +86,7 @@ module.exports = {
         let task;
 
         req
-            //.on('error', logger.log(err))
+            .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
             .on('end', () => {
                 body = Buffer.concat(body).toString();
@@ -91,7 +99,7 @@ module.exports = {
         let body = [];
         let ids;
         req
-            //.on('error', logger.log(err))
+            .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
             .on('end', () => {
                 body = Buffer.concat(body).toString();
@@ -106,7 +114,7 @@ module.exports = {
         let body = [];
         let boardId;
         req
-            //.on('error', logger.log(err))
+            .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
             .on('end', () => {
                 body = Buffer.concat(body).toString();
@@ -120,7 +128,7 @@ module.exports = {
         let task;
         const boardId = getId(req, 'boardId');
         req
-            //.on('error', logger.log(err))
+            .on('error', err => logger.log(err))
             .on('data', chunk => body.push(chunk))
             .on('end', () => {
                 body = Buffer.concat(body).toString();

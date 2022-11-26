@@ -23,10 +23,14 @@ module.exports = class Logger extends EventEmitter{
         this.logger.log(msg);
     }
 
-    // log(message :string = ''){
-    //     const time = moment().foramt(format:'DD-MM-YY hh:mm');
-    //     const msg = `${time} -> ${message}`;
-    //     this.emit('logToFile',msg);
-    //     this.logger.log(`${time}->${message}`);
-    // }
+    log(message = ''){
+        const time = moment().format('DD-MM-YY hh:mm');
+        const msg = `${time} -> ${message}`;
+        this.emit('logToFile',msg);
+        this.logger.log(`${time}->${message}`);
+    }
+    
+    logToFile(data){
+        this.storage.write(data + '\n')
+    }
 }
