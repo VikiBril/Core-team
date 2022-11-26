@@ -5,7 +5,7 @@ const {URL} = require('url');
 
 const ROUTES = {
     GET: {
-        '/': renderHomePage,
+        '/home': renderHomePage,
         '/boards' : showAllBoards,
         '/boards/id': getTasksByBoard
     },
