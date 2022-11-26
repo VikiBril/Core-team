@@ -113,17 +113,20 @@ module.exports = class TaskManagerDAL extends EventEmitter {
     filterTasks(payload) {
 
         if (this.data.Boards.find(board => board.BoardId == payload.BoardId)) {
-            console.log(payload.Priority);
             if (payload.hasOwnProperty('Priority'))
-                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Priority === payload.Priority);
+                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks = this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Priority === payload.Priority);
             if (payload.hasOwnProperty('Assignee'))
-                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Assignee === payload.Assignee);
+                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks = this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Assignee === payload.Assignee);
             if (payload.hasOwnProperty('Type'))
-                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Type === payload.Type);
+                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks = this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Type === payload.Type);
             if (payload.hasOwnProperty('Status'))
-                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Status === payload.Status);
+                this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks = this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks.filter(task => task.Status === payload.Status);
+            return this.data.Boards.find(board => board.BoardId == payload.BoardId).Tasks;
+        } else {
+            this.emit('error');
+            return "error";
+        }
 
-        return this.data.Boards.find(board => board.BoardId == boardId).Tasks
     }
 
     sortTasks (payload){
