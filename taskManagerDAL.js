@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Path = require('path');
+const converter = require('json-2-csv');
 
 const { EventEmitter } = require('events');
 
@@ -49,8 +50,13 @@ module.exports = class TaskManagerDAL extends EventEmitter {
     }
 
     getAllTaskByBoard(boardId) {
+        if(this.data.Boards.find(board => board.BoardId == boardId)) {
+            return this.data.Boards.find(board => board.BoardId == boardId).Tasks;
+        } else {
+            this.emit('error');
+            return "error";
+        }
 
-        return this.data.Boards.find(board => board.BoardId == boardId).Tasks;
     }
 
     updateBoard(payload) {
@@ -128,6 +134,22 @@ module.exports = class TaskManagerDAL extends EventEmitter {
         }
 
     }
+
+    exportToCsv(boardId){
+        let todos =  this.data.Boards.find(board => board.BoardId == boardId).Tasks;
+        converter.json2csv(todos, (err, csv) => {
+            if (err) {
+                throw err
+            }
+
+            // print CSV string
+            // console.log(csv);
+
+            // write CSV to a file
+            fs.writeFileSync('tasks.csv', csv);
+        })
+
+        }
 
     sortTasks (payload){
     if (this.data.Boards.find(board => board.BoardId == payload.BoardId)) {
