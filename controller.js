@@ -1,7 +1,7 @@
 const TaskManagerDAL = require('./taskManagerDAL');
 const {boardStatistics} = require('./boardStatistic');
 const {URL} = require('url');
-
+const logger = require('./Logger')
 const taskManagerDAL = new TaskManagerDAL();
 
 getId = (req, param) => {
@@ -32,6 +32,7 @@ module.exports = {
         }
         let dataAndStats = boardStatistics(boardId);
         dataAndStats.tasks = data;
+
         logger.log("getTasksByBoard");
         res.writeHeader(200);
         res.end(JSON.stringify(dataAndStats));
@@ -39,7 +40,9 @@ module.exports = {
     },
     showAllBoards: (req, res) => {
         const data = taskManagerDAL.getAllBoards();
+
         logger.log("showAllBoards");
+
         res.writeHeader(200);
         res.end(JSON.stringify(data));
     },
@@ -54,7 +57,9 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 board = JSON.parse(body);
                 taskManagerDAL.updateBoard(board);
+
                 logger.log("updateBoard");
+
                 res.end('done');
             })
     },
@@ -70,6 +75,7 @@ module.exports = {
                 board = JSON.parse(body);
                 taskManagerDAL.createNewBoard(board);
                 logger.log("createNewBoard");
+
                 res.end('done');
             })
     },
@@ -101,6 +107,7 @@ module.exports = {
                 task = JSON.parse(body);
                 taskManagerDAL.updateTask(task);
                 logger.log("updateTask");
+
                 res.end('done');
             })
     },
@@ -114,6 +121,7 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 ids = JSON.parse(body);
                 taskManagerDAL.deleteTask(ids);
+
                 logger.log("deleteTask");
                 res.end('done');
             })
@@ -144,7 +152,9 @@ module.exports = {
                 body = Buffer.concat(body).toString();
                 task = JSON.parse(body);
                 res.writeHeader(200);
+
                 logger.log("filterBoardByParameters");
+
                 res.end(JSON.stringify(taskManagerDAL.filterTasks(task)));
             })
     }

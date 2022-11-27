@@ -13,11 +13,11 @@ module.exports = class Logger extends EventEmitter{
         this.storage = {
             write: data=> fs.appendFile(path.join(__dirname,'/logs.txt'),data,null,()=> console.log('data inserted to log file'))
         };
-        // this.on('logToFile',this.logToFile);
+        this.on('logToFile',this.logToFile);
         return this;
     }
 
-    log(message = ''){
+    log(message = '') {
         const time = moment().format('DD-MM-YY hh:mm');
         const msg = `${time} -> ${message}`;
         this.emit('logToFile',msg);
