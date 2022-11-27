@@ -1,76 +1,4 @@
-// <script>
-//     $(document).ready(function(){
-//     // Activate tooltip
-//     $('[data-toggle="tooltip"]').tooltip();
-//
-//     // Select/Deselect checkboxes
-//     var checkbox = $('table tbody input[type="checkbox"]');
-//     $("#selectAll").click(function(){
-//     if(this.checked){
-//     checkbox.each(function(){
-//     this.checked = true;
-// });
-// } else{
-//     checkbox.each(function(){
-//     this.checked = false;
-// });
-// }
-// });
-//     checkbox.click(function(){
-//     if(!this.checked){
-//     $("#selectAll").prop("checked", false);
-// }
-// });
-//     $(function()
-// {
-//     $('#table').bootstrapTable()
-// }
-//     )
-//
-// //Moment.JS Return Date Ranges
-//     function getDates(startDate, stopDate) {
-//     var dateArray = [];
-//     var currentDate = moment(startDate);
-//     var stopDate = moment(stopDate);
-//     while (currentDate <= stopDate) {
-//     dateArray.push( moment(currentDate).format('YYYY-MM-DD'))
-//     currentDate = moment(currentDate).add(1, 'days');
-// }
-//     return dateArray;
-// }
-//
-//
-//     $('#ok').click( function()
-// {
-//
-//     var $table = $('#table')
-//     var from=$("input[type=date][name=date1]" ).val();
-//     var to=$("input[type=date][name=date2]" ).val();
-//     $table.bootstrapTable('filterBy',{ ETA: getDates(from,to)})
-//
-//
-//
-// })
-// });
-//
-//
-// </script>
-// <script> var sendRequest = function () {
-// //   var requestOptions = {
-// //   method: 'GET',
-// //   redirect: 'follow'
-// // };
-// //
-// // fetch("http://localhost:3030/boards", requestOptions)
-// //   .then(response => response.text())
-// //   .then(result => {
-// //     document.getElementById("main").innerHTML = result;
-// //     console.log(result);
-// //   })
-// //   .catch(error => console.log('error', error));
-// // }
-// </script>
-module.exports =`
+module.exports = `
 <style>*{
     margin: 0;
     padding: 0;
@@ -380,70 +308,8 @@ table.table .avatar {
 
  <!-- Style css -->
  <link rel="stylesheet" href="./Style.css"/>
-<script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;
-			});
-		}
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-	$(function()
-  {
-    $('#table').bootstrapTable()
-  }
-  )
-
-//Moment.JS Return Date Ranges
-function getDates(startDate, stopDate) {
-    var dateArray = [];
-    var currentDate = moment(startDate);
-    var stopDate = moment(stopDate);
-    while (currentDate <= stopDate) {
-        dateArray.push( moment(currentDate).format('YYYY-MM-DD'))
-        currentDate = moment(currentDate).add(1, 'days');
-    }
-    return dateArray;
-}
-
-
-  $('#ok').click( function()
-  {
-
-    var $table = $('#table')
-    var from=$("input[type=date][name=date1]" ).val();
-    var to=$("input[type=date][name=date2]" ).val();
-    $table.bootstrapTable('filterBy',{ ETA: getDates(from,to)})
-
-
-
-})
-});
-$(function(){
-     $(".table").on("click", "tr[role=\"button\"]", function (e) {
-          window.location = $(this).data("href");
-     });
-});
-
-
-</script>
 </head>
-<body onLoad="js_onload_code ();">
+<body>
 
     <div class="container">
 		<div class="table-responsive">
@@ -454,140 +320,178 @@ $(function(){
 							<h2>Task<b>Manager</b></h2>
 						</div>
 						<div class="col-xs-6">
-							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Board</span></a>
-							<a href="#" class="btn btn-primary"><i class="material-icons">&#xE24D;</i> <span>Export to CSV</span></a>
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Tasks</span></a>
+							<a href="/boards/id/csv?boardId=2" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE24D;</i> Export to CSV</a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 						</div>
 					</div>
 				</div>
 				<table class="table table-striped table-hover">
-					<thead>
-						<tr >
-							<th>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="selectAll">
-									<label for="selectAll"></label>
-								</span>
-							</th>
-							<th>BoardsID</th>
-							<th>BoardsName</th>
-						</tr>
-					</thead>
-					<tbody id="tbody" class="tbody">
-						<tr role="button" data-href="./index.html">
-							<td>
-								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
-								</span>
-							</td>
-							 <td>03248</td>
-							<td>R&D</td>
-							<td>
-								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
+                    <thead>
+                    \t\t\t\t\t\t<tr>
+                    \t\t\t\t\t\t\t<th>
+                    \t\t\t\t\t\t\t\t<span class="custom-checkbox">
+                    \t\t\t\t\t\t\t\t\t<input type="checkbox" id="selectAll">
+                    \t\t\t\t\t\t\t\t\t<label for="selectAll"></label>
+                    \t\t\t\t\t\t\t\t</span>
+                    \t\t\t\t\t\t\t</th>
+                    \t\t\t\t\t\t\t<th>TaskId</th>
+                    \t\t\t\t\t\t\t<th>TaskName</th>
+                    \t\t\t\t\t\t\t<th>TaskDetails</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Type</th>
+                                    <th></th>
+                    \t\t\t\t\t\t</tr>
+                    \t\t\t\t\t</thead>
+					<tbody id="tbody2" >
+                    \t\t\t\t\t<tr>
+                    \t\t\t\t\t\t\t<td>
+                    \t\t\t\t\t\t\t\t<span class="custom-checkbox">
+                    \t\t\t\t\t\t\t\t\t<input type="checkbox" id="checkbox1" name="options[]" value="1">
+                    \t\t\t\t\t\t\t\t\t<label for="checkbox1"></label>
+                    \t\t\t\t\t\t\t\t</span>
+                    \t\t\t\t\t\t\t</td>
+                    \t\t\t\t\t\t\t<td>Guy</td>
+                    \t\t\t\t\t\t\t<td>Implement new query</td>
+                    \t\t\t\t\t\t\t<td>Show all employees older than 30</td>
+                    \t\t\t\t\t\t\t<td><span class="status text-info">&bull;</span>To-Do</td>
+                    \t\t\t\t\t\t\t<td>high</td>
+                    \t\t\t\t\t\t\t<td>Feature</td>
+                    \t\t\t\t\t\t\t<td id="td-id-3" class="td-class-3">2019-02-03 16:32:09</td>
+                    \t\t\t\t\t\t\t<td>
+                    \t\t\t\t\t\t\t\t<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    \t\t\t\t\t\t\t\t<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    \t\t\t\t\t\t\t</td>
 					</tbody>
 				</table>
-				<script src="taskclient.js"></script>
+				<script src="client.js"></script>
 			</div>
 		</div>
     </div>
 
-    <script>
-    function js_onload_code (){
-
-        alert(" Hello, you are learning onload event in JavaScript");
-        
-        };
-    var sendRequest = function () {
-      var requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch("http://localhost:3030//boards/id?boardId=1",{
-        method: 'GET', redirect: 'follow'
-    })
-      .then((data)=>{
-        console.log(data);
-        return data.json();
-      })
-      .then((objectData)=>{
-        console.log(objectData[0].BoardName);
-        let tableData="";
-        objectData.forEach((values)=>{
-          tableData+= "<tr>";
-		  tableData+= "<th>";
-		  tableData+="<th>"+values.BoardId+"</th>";
-		  tableData+="<th>"+values.BoardName+"</th>"+"</tr>";
-        });
-        document.getElementById("tbody").innerHTML=tableData;
-      })
-      .catch(error => console.log('error', error));
-    }</script>
-    <button onclick="sendRequest()">send request</button>
-    <h3>result:</h3>
-    <p id="main"></p>
-
 	<!-- Edit Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
+	<div  id ="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">
-						<h4 class="modal-title">Add Boards</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label>IDBoards</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>BoardsName</label>
-							<input type="text" class="form-control" required>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Add">
-					</div>
-				</form>
-			</div>
-		</div>
+\t\t\t<div class="modal-content">
+\t\t\t\t<form>
+\t\t\t\t\t<div class="modal-header">\t\t\t\t\t\t
+\t\t\t\t\t\t<h4 class="modal-title">Add Tasks</h4>
+\t\t\t\t\t\t<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class="modal-body">\t\t\t\t\t
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Employees</label>
+\t\t\t\t\t\t\t<input type="text" class="form-control" required>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>TaskName</label>
+\t\t\t\t\t\t\t<input type="text" class="form-control" required>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>TaskDetails</label>
+\t\t\t\t\t\t\t<textarea class="form-control" required></textarea>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Status: </label>
+\t\t\t\t\t\t\t<select class="form-select" aria-label="Default select example">
+\t\t\t\t\t\t\t\t<option selected>to-do</option>
+\t\t\t\t\t\t\t\t<option value="1">to-do</option>
+\t\t\t\t\t\t\t\t<option value="2"> in-progress</option>
+\t\t\t\t\t\t\t\t<option value="3">done</option>
+\t\t\t\t\t\t\t  </select>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Priority: </label>
+\t\t\t\t\t\t\t<select class="form-select" aria-label="Default select example">
+\t\t\t\t\t\t\t\t<option selected>low</option>
+\t\t\t\t\t\t\t\t<option value="1">low</option>
+\t\t\t\t\t\t\t\t<option value="2"> Medium</option>
+\t\t\t\t\t\t\t\t<option value="3">high</option>
+\t\t\t\t\t\t\t  </select>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<div class='radio-container'>
+\t\t\t\t\t\t\t\t<label>Type: </label>
+\t\t\t\t\t\t\t\t<input checked=''  name='pet-gender' type='radio' value='Feature' required>
+\t\t\t\t\t\t\t\t<label >Feature</label>
+\t\t\t\t\t\t\t\t<input name='pet-gender' type='radio' value='bug'>
+\t\t\t\t\t\t\t\t<label >bug</label>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class="modal-footer">
+\t\t\t\t\t\t<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+\t\t\t\t\t\t<input type="submit" class="btn btn-success" value="Add">
+\t\t\t\t\t</div>
+\t\t\t\t</form>
+\t\t\t</div>
+\t\t</div>
 	</div>
 	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">
-						<h4 class="modal-title">Edit Boards</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label>IDBoards</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>BoardsName</label>
-							<input type="text" class="form-control" required>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
-					</div>
-				</form>
-			</div>
-		</div>
+	<div id="addEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+\t\t\t<div class="modal-content">
+\t\t\t\t<form onsubmit="addTask()">
+\t\t\t\t\t<div class="modal-header">\t\t\t\t\t\t
+\t\t\t\t\t\t<h4 class="modal-title">Add Tasks</h4>
+\t\t\t\t\t\t<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class="modal-body">\t\t\t\t\t
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>TaskName</label>
+\t\t\t\t\t\t\t<input id='TaskName' type="text" class="form-control" required>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>TaskDetails</label>
+\t\t\t\t\t\t\t<textarea id='TaskDetails' class="form-control" required></textarea>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Status: </label>
+\t\t\t\t\t\t\t<select id ='Status' class="form-select" aria-label="Default select example">
+\t\t\t\t\t\t\t\t<option value="To-Do" selected>To-Do</option>
+\t\t\t\t\t\t\t\t<option value="In Progress"> In Progress</option>
+\t\t\t\t\t\t\t\t<option value="Done">Done</option>
+\t\t\t\t\t\t\t  </select>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Priority: </label>
+\t\t\t\t\t\t\t<select id='Priority' class="form-select" aria-label="Default select example">
+\t\t\t\t\t\t\t\t<option value="Low" selected>Low</option>
+\t\t\t\t\t\t\t\t<option value="Medium"> Medium</option>
+\t\t\t\t\t\t\t\t<option value="High">High</option>
+\t\t\t\t\t\t\t  </select>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<div class='radio-container'>
+\t\t\t\t\t\t\t\t<label>Type: </label>
+\t\t\t\t\t\t\t<select id='Type' class="form-select" aria-label="Default select example">
+\t\t\t\t\t\t\t\t<option value="Bug" selected>Bug</option>
+\t\t\t\t\t\t\t\t<option value="Feature">Feature</option>
+\t\t\t\t\t\t\t  </select>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t</div>\t\t\t\t\t
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Assignee</label>
+\t\t\t\t\t\t\t<input id="Assignee" type="text" class="form-control" required>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t\t<div class="form-group">
+\t\t\t\t\t\t\t<label>Creator</label>
+\t\t\t\t\t\t\t<input id="Creator" type="text" class="form-control" required>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div class="modal-footer">
+\t\t\t\t\t\t<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+\t\t\t\t\t\t<input type="submit" class="btn btn-success" value="Add">
+\t\t\t\t\t</div>
+\t\t\t\t</form>
+\t\t\t</div>
+\t\t</div>
+		
 	</div>
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
+		<div class="modal-dialogmodal-dialog">
 			<div class="modal-content">
 				<form>
 					<div class="modal-header">
@@ -606,6 +510,70 @@ $(function(){
 			</div>
 		</div>
 	</div>
+	
+ <script>
+ var sendRequest = function () {
+      var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    let search = location.search.substring(1);
+    let data = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+    fetch("http://localhost:3030/boards", requestOptions)
+      .then((data)=>{
+        console.log(data);
+        return data.json();
+      })
+      .then((objectData)=>{
+       exdata = objectData.find(board => board.BoardId == data.boardId).Tasks;
+       let myJSON = JSON.stringify(exdata);
+       myJSON=JSON.parse(myJSON);
+       let tableData="";
+       // // console.log(myJSON);
+        myJSON.forEach((values)=>{
+          tableData+= "<tr>";
+		  tableData+= "<th>";
+		  tableData+="<th>"+values.TaskId+"</th>";
+		  tableData+="<th>"+values.TaskName+"</th>";
+		  tableData+="<th>"+values.TaskDetails+"</th>";
+		  tableData+="<th>"+values.Status+"</th>";
+		  tableData+="<th>"+values.Priority+"</th>";
+		  tableData+="<th>"+values.Type+"</th>";+"</tr>";
+          tableData+='     <td><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>';
+          tableData+='     <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>';
+        });
+        document.getElementById("tbody2").innerHTML=tableData;
+      })
+      .catch(error => console.log('error', error))
+ }
+ 
+    var addTask = function () {
+     let query = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+        const data = { "BoardId":  query.boardId,
+                        "TaskName":document.getElementById("TaskName").value,
+                        "TaskDetails":document.getElementById("TaskDetails").value,
+                        "Status":document.getElementById("Status").value,
+                        "Priority":document.getElementById("Priority").value,
+                        "Type":document.getElementById("Type").value,
+                        "Assignee":document.getElementById("Assignee").value,
+                        "Creator":document.getElementById("Creator").value};
+    fetch('http://localhost:3030/boards/id', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+ </script>
+	<script> window.onload=sendRequest()</script>
 </body>
 </html>
 `;
